@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id                    String             @id @default(cuid())
+  email                 String             @unique
+  name                  String
+  passwordHash          String?
+  role                  String             @default("USER") // "ADMIN" | "USER"
+  planTier              String             @default("FREE") // "FREE" | "PRO"
+  subscriptionExpiresAt DateTime?
+  dailySearchUsed       Int                @default(0)
+  dailyPromptUsed       Int                @default(0)
+  createdAt             DateTime           @default(now())
+  watchlists            Watchlist[]
+  promptGenerations     PromptGeneration[]
+}
+
+model Shop {
+  id              String    @id // TikTok Shop ID
+  shopName        String
+  shopAvatarUrl   String?
+  category        String
+  rating          Float     @default(4.8)
+  totalProducts   Int       @default(0)
+  gmv30dIdr       BigInt    @default(0)
+  avgCommission   Float     @default(15.0)
+  heroProduct     String?
+  fulfillmentSla  String    @default("98.5% Dikirim < 24 Jam")
+  lastSyncedAt    DateTime  @default(now())
+  products        Product[]
+}
+
+model Product {
+  id                  String               @id // TikTok Product ID
+  shopId              String
+  shop                Shop                 @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  title               String
+  categoryName        String
+  icon                String               @default("📦")
+  thumbnailUrl        String?
+  priceIdr            Int
+  commissionRate      Float                // e.g., 18.0 for 18%
+  commissionAmountIdr Int
+  sold7d              Int                  @default(0)
+  totalSoldAllTime    Int                  @default(0)
+  growthRate7d        Float                @default(0)
+  gmv7dIdr            BigInt               @default(0)
+  productUrl          String?
+  status              String               @default("ACTIVE") // "ACTIVE" | "INACTIVE" | "OUT_OF_STOCK"
+  statusNote          String?
+  visualLocksJson     String               // JSON array of subject lock strings for Google Flow Ingredients
+  hashtagsJson        String               // JSON object { niche: [], product: [], affiliate: [] }
+  sparklineJson       String               // JSON array of 7 daily numbers
+  lastSyncedAt        DateTime             @default(now())
+  dailyMetrics        ProductDailyMetric[]
+  videos              Video[]
+  promptGenerations   PromptGeneration[]
+}
+
+model ProductDailyMetric {
+  id                  String   @id @default(cuid())
+  productId           String
+  product             Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  metricDate          DateTime
+  unitsSoldDaily      Int
+  gmvDailyIdr         BigInt
+  activeCreatorsCount Int      @default(0)
+  newVideosCount      Int      @default(0)
+}
+
+model Creator {
+  id            String   @id // TikTok Creator ID
+  username      String   @unique
+  nickname      String
+  avatarUrl     String?
+  followerCount Int      @default(0)
+  lastSyncedAt  DateTime @default(now())
+  videos        Video[]
+}
+
+model Video {
+  id                  String   @id // TikTok Video ID
+  productId           String
+  product             Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  creatorId           String
+  creator             Creator  @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  videoUrl            String
+  coverUrl            String?
+  hookCaption         String
+  viewsCount          Int      @default(0)
+  likesCount          Int      @default(0)
+  estimatedSalesUnits Int      @default(0)
+  publishedAt         DateTime @default(now())
+}
+
+model PromptGeneration {
+  id                  String   @id @default(cuid())
+  userId              String
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId           String
+  product             Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  style               String
+  recommendedHashtags String   // JSON
+  flowScenesPrompts   String   // JSON
+  voiceoverScript     String
+  createdAt           DateTime @default(now())
+}
+
+model Watchlist {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  targetType String   // "PRODUCT" | "SHOP"
+  targetId   String
+  createdAt  DateTime @default(now())
+
+  @@unique([userId, targetType, targetId])
+}

@@ -1,0 +1,7 @@
+node_modules
+.next
+.env
+deploy-vercel.cmd
+install-vercel.cmd
+start-dev.cmd
+*.log

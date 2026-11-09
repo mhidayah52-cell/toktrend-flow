@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Tactical Carbon & Electric Mint Design Tokens */
+  --bg-canvas: #090A0F;
+  --bg-surface-1: #11131A;
+  --bg-surface-2: #181B24;
+  --bg-overlay: rgba(5, 6, 10, 0.82);
+  --border-subtle: #1F2430;
+  --border-focus: #10B981;
+  --text-primary: #F3F4F6;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --accent-primary: #10B981;
+  --accent-primary-hover: #059669;
+  --accent-viral: #F43F5E;
+  --accent-breakout: #F59E0B;
+  --accent-ai: #06B6D4;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-mono,
+.tabular-nums {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================================
+   HOPERISE WARM EDITORIAL THEME (Phenomenon Studio Signature Palette)
+   Canvas: #F8F5F2 | Cards: #FFFFFF | Recessed Sand: #F2EDE4
+   Olive Primary: #52833C | Warm Taupe: #9A7A51 | Espresso Text: #1A1917
+   ============================================================================ */
+.theme-hoperise {
+  color-scheme: light;
+  background-color: #F8F5F2 !important;
+  color: #1A1917 !important;
+}
+
+/* Primary Canvas & Elevated Card Surfaces */
+.theme-hoperise.bg-\[\#090A0F\],
+.theme-hoperise .bg-\[\#090A0F\] {
+  background-color: #F8F5F2 !important;
+  color: #1A1917 !important;
+}
+
+.theme-hoperise .bg-\[\#11131A\],
+.theme-hoperise .bg-slate-900,
+.theme-hoperise .bg-slate-900\/90 {
+  background-color: #FFFFFF !important;
+  border-color: #E6E0D6 !important;
+  box-shadow: 0 8px 28px rgba(42, 34, 24, 0.04);
+}
+
+/* Recessed Sand Surfaces (Inputs, Filter Boxes, Sub-cards) */
+.theme-hoperise .bg-slate-950,
+.theme-hoperise .bg-slate-950\/60 {
+  background-color: #F3EFEA !important;
+  border-color: #E2DBD0 !important;
+}
+
+.theme-hoperise .bg-slate-800,
+.theme-hoperise .bg-slate-800\/60 {
+  background-color: #EAE4DC !important;
+  border-color: #DCD3C6 !important;
+  color: #1A1917 !important;
+}
+
+.theme-hoperise .hover\:bg-slate-800:hover,
+.theme-hoperise .hover\:bg-slate-800\/40:hover,
+.theme-hoperise .hover\:bg-slate-700:hover {
+  background-color: #E5DEC9 !important;
+}
+
+/* Structural Borders & Dividers */
+.theme-hoperise .border-\[\#1F2430\],
+.theme-hoperise .border-slate-800,
+.theme-hoperise .border-slate-700 {
+  border-color: #E6E0D6 !important;
+}
+
+.theme-hoperise .divide-slate-800 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #ECE7DF !important;
+}
+
+/* Editorial Typography Contrast */
+.theme-hoperise .text-slate-100,
+.theme-hoperise .text-slate-200,
+.theme-hoperise .text-\[\#F3F4F6\] {
+  color: #1A1917 !important;
+}
+
+.theme-hoperise .text-slate-300 {
+  color: #3D3934 !important;
+}
+
+.theme-hoperise .text-slate-400,
+.theme-hoperise .text-slate-500 {
+  color: #6E675F !important;
+}
+
+/* Botanical Olive Green Primary Brand Overrides (#52833C) */
+.theme-hoperise .bg-emerald-600,
+.theme-hoperise .bg-indigo-600 {
+  background-color: #52833C !important;
+  color: #FFFFFF !important;
+}
+
+.theme-hoperise .hover\:bg-emerald-500:hover,
+.theme-hoperise .hover\:bg-indigo-500:hover {
+  background-color: #416B2E !important;
+}
+
+/* Soft Botanical Badges & Pills on Light Surface */
+.theme-hoperise .bg-emerald-500\/15,
+.theme-hoperise .bg-emerald-500\/20,
+.theme-hoperise .bg-emerald-500\/10 {
+  background-color: #E7F2E2 !important;
+  border-color: #C5DFB9 !important;
+}
+
+.theme-hoperise .text-emerald-400,
+.theme-hoperise .text-emerald-300 {
+  color: #2D591B !important;
+}
+
+.theme-hoperise .bg-amber-500\/15,
+.theme-hoperise .bg-amber-500\/20,
+.theme-hoperise .bg-amber-500\/10 {
+  background-color: #F7EFE2 !important;
+  border-color: #E5D0B1 !important;
+}
+
+.theme-hoperise .text-amber-400,
+.theme-hoperise .text-amber-300 {
+  color: #7D5522 !important;
+}
+
+.theme-hoperise .bg-cyan-500\/20,
+.theme-hoperise .bg-indigo-500\/20,
+.theme-hoperise .bg-indigo-600\/20,
+.theme-hoperise .bg-purple-500\/20 {
+  background-color: #EBF0E8 !important;
+}
+
+.theme-hoperise .text-cyan-300,
+.theme-hoperise .text-indigo-400,
+.theme-hoperise .text-indigo-300,
+.theme-hoperise .text-purple-300 {
+  color: #3B6628 !important;
+}
+
+.theme-hoperise .bg-rose-500\/15,
+.theme-hoperise .bg-rose-500\/20 {
+  background-color: #FCE8E6 !important;
+}
+
+.theme-hoperise .text-rose-400,
+.theme-hoperise .text-rose-300 {
+  color: #A82525 !important;
+}
+
+/* Inputs, Selects & Textareas in HopeRise Warm Mode */
+.theme-hoperise input:not([type="range"]):not([type="checkbox"]),
+.theme-hoperise select,
+.theme-hoperise textarea {
+  background-color: #F6F3EE !important;
+  border-color: #DDD5C7 !important;
+  color: #1A1917 !important;
+}
+
+.theme-hoperise input:focus,
+.theme-hoperise select:focus,
+.theme-hoperise textarea:focus {
+  border-color: #52833C !important;
+  outline: none !important;
+}
+
+/* ============================================================================
+   NEON WAVE OBSIDIAN THEME (Reference Image Signature Palette)
+   Canvas: #05050A | Cards: #0A0B14 | Pill Search & Neon Wave Contours
+   Electric Cyan: #00A8FF | Electric Indigo: #4F46E5 | Violet: #A855F7
+   ============================================================================ */
+.theme-wave {
+  color-scheme: dark;
+  background-color: #05050A !important;
+  color: #FFFFFF !important;
+}
+
+.theme-wave.bg-\[\#090A0F\],
+.theme-wave .bg-\[\#090A0F\] {
+  background-color: #05050A !important;
+}
+
+.theme-wave .bg-\[\#11131A\],
+.theme-wave .bg-slate-900,
+.theme-wave .bg-slate-900\/90 {
+  background-color: #0A0B14 !important;
+  border-color: rgba(99, 102, 241, 0.22) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65);
+}
+
+.theme-wave .bg-slate-950,
+.theme-wave .bg-slate-950\/60 {
+  background-color: #06070D !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.theme-wave .bg-emerald-600 {
+  background-color: #00A8FF !important;
+  color: #FFFFFF !important;
+}
+
+.theme-wave .hover\:bg-emerald-500:hover {
+  background-color: #0284C7 !important;
+}
+
+
